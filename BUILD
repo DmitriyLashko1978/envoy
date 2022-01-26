@@ -1,7 +1,7 @@
 licenses(["notice"])  # Apache 2
 
 exports_files([
-    "VERSION",
+    "ENVOY_VERSION",
     "API_VERSION",
     ".clang-format",
     "pytest.ini",

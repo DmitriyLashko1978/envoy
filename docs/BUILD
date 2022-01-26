@@ -12,7 +12,7 @@ exports_files([
     "v2_mapping.json",
     "empty_extensions.json",
     "redirects.txt",
-    "VERSION",
+    "ENVOY_VERSION",
 ])
 
 envoy_package()
@@ -190,7 +190,7 @@ genrule(
     $(location //tools/docs:sphinx_runner) \\
          --build_sha="$${BUILD_SHA:-}" \\
          --docs_tag="$${DOCS_TAG:-}" \\
-         --version_file=$(location //:VERSION) \\
+         --version_file=$(location //:ENVOY_VERSION) \\
          --validator_path=$(location //tools/config_validation:validate_fragment) \\
          --descriptor_path=$(location //tools/type_whisperer:all_protos_with_ext_pb_text.pb_text) \\
          $(location rst) \\
@@ -201,6 +201,6 @@ genrule(
         ":rst",
         "//tools/config_validation:validate_fragment",
         "//tools/type_whisperer:all_protos_with_ext_pb_text.pb_text",
-        "//:VERSION",
+        "//:ENVOY_VERSION",
     ],
 )

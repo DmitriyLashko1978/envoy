@@ -59,13 +59,13 @@ def _envoy_repo_impl(repository_ctx):
     files as follows:
 
     ```starlark
-    load("@envoy_repo//:version.bzl", "VERSION")
+    load("@envoy_repo//:version.bzl", "ENVOY_VERSION")
     ```
 
-    `VERSION` can be used to derive version-specific rules and can be passed
+    `ENVOY_VERSION` can be used to derive version-specific rules and can be passed
     to the rules.
 
-    The `VERSION` and also the local `PATH` to the repo can be accessed in
+    The `ENVOY_VERSION` and also the local `PATH` to the repo can be accessed in
     python libraries/binaries. By adding `@envoy_repo` to `deps` they become
     importable through the `envoy_repo` namespace.
 
@@ -78,8 +78,8 @@ def _envoy_repo_impl(repository_ctx):
 
     """
     repo_path = repository_ctx.path(repository_ctx.attr.envoy_root).dirname
-    version = repository_ctx.read(repo_path.get_child("VERSION")).strip()
-    repository_ctx.file("version.bzl", "VERSION = '%s'" % version)
+    version = repository_ctx.read(repo_path.get_child("ENVOY_VERSION")).strip()
+    repository_ctx.file("version.bzl", "ENVOY_VERSION = '%s'" % version)
     repository_ctx.file("path.bzl", "PATH = '%s'" % repo_path)
     repository_ctx.file("__init__.py", "PATH = '%s'\nVERSION = '%s'" % (repo_path, version))
     repository_ctx.file("WORKSPACE", "")

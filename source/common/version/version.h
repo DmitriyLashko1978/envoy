@@ -39,7 +39,7 @@ class BuildVersionMetadata {
 public:
   // Type of build: RELEASE or DEBUG
   const std::string BuildType = "build.type";
-  // Build label from the VERSION file
+  // Build label from the ENVOY_VERSION file
   const std::string BuildLabel = "build.label";
   // Version of the SSL implementation
   const std::string SslVersion = "ssl.version";

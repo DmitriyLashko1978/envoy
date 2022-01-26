@@ -12,7 +12,7 @@ envoy_package()
 
 genrule(
     name = "generate_version_number",
-    srcs = ["//:VERSION"],
+    srcs = ["//:ENVOY_VERSION"],
     outs = ["version_number.h"],
     cmd = """echo "#define BUILD_VERSION_NUMBER \\"$$(cat $<)\\"" >$@""",
     visibility = ["//visibility:private"],

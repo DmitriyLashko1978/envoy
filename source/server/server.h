@@ -39,7 +39,7 @@
 #include "source/common/runtime/runtime_impl.h"
 #include "source/common/secret/secret_manager_impl.h"
 #include "source/common/upstream/health_discovery_service.h"
-#include "source/server/admin/admin.h"
+#include "source/server/admin/admin_dummy.h"
 #include "source/server/configuration_impl.h"
 #include "source/server/listener_hooks.h"
 #include "source/server/listener_manager_impl.h"
@@ -355,7 +355,7 @@ private:
   envoy::config::bootstrap::v3::Bootstrap bootstrap_;
   Api::ApiPtr api_;
   Event::DispatcherPtr dispatcher_;
-  std::unique_ptr<AdminImpl> admin_;
+  std::unique_ptr<AdminImplDummy> admin_;
   Singleton::ManagerPtr singleton_manager_;
   Network::ConnectionHandlerPtr handler_;
   std::unique_ptr<Runtime::ScopedLoaderSingleton> runtime_singleton_;

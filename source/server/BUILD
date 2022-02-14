@@ -390,7 +390,7 @@ envoy_cc_library(
 
 envoy_cc_library(
     name = "options_lib",
-    srcs = ["options_impl.cc"] + select({
+    srcs = ["options_impl.cc", "zorus_options_impl.cc"] + select({
         "//bazel:linux_x86_64": ["options_impl_platform_linux.cc"],
         "//bazel:linux_aarch64": ["options_impl_platform_linux.cc"],
         "//bazel:linux_ppc": ["options_impl_platform_linux.cc"],
@@ -400,6 +400,7 @@ envoy_cc_library(
     hdrs = [
         "options_impl.h",
         "options_impl_platform.h",
+        "zorus_options_impl.h",
     ] + select({
         "//bazel:linux_x86_64": ["options_impl_platform_linux.h"],
         "//bazel:linux_aarch64": ["options_impl_platform_linux.h"],

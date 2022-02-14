@@ -17,7 +17,7 @@
 #include "source/server/drain_manager_impl.h"
 #include "source/server/hot_restart_nop_impl.h"
 #include "source/server/listener_hooks.h"
-#include "source/server/options_impl.h"
+#include "source/server/zorus_options_impl.h"
 #include "source/server/server.h"
 
 #include "absl/debugging/symbolize.h"
@@ -52,7 +52,7 @@ MainCommonBase::MainCommonBase(const Server::Options& options, Event::TimeSystem
       component_factory_(component_factory), stats_allocator_(symbol_table_) {
   // Process the option to disable extensions as early as possible,
   // before we do any configuration loading.
-  OptionsImpl::disableExtensions(options.disabledExtensions());
+  ZorusOptionsImpl::disableExtensions(options.disabledExtensions());
 
   // Enable core dumps as early as possible.
   if (options_.coreDumpEnabled()) {

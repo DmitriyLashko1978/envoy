@@ -12,7 +12,7 @@
 #include "source/common/thread_local/thread_local_impl.h"
 #include "source/exe/process_wide.h"
 #include "source/server/listener_hooks.h"
-#include "source/server/options_impl.h"
+#include "source/server/zorus_options_impl.h"
 #include "source/server/server.h"
 
 #ifdef ENVOY_HANDLE_SIGNALS
@@ -145,7 +145,7 @@ private:
   Envoy::TerminateHandler log_on_terminate_;
 #endif
 
-  Envoy::OptionsImpl options_;
+  Envoy::ZorusOptionsImpl options_;
   Event::RealTimeSystem real_time_system_;
   DefaultListenerHooks default_listener_hooks_;
   ProdComponentFactory prod_component_factory_;

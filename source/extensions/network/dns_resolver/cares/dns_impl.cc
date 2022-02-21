@@ -20,6 +20,8 @@
 #include "absl/strings/str_join.h"
 #include "ares.h"
 
+#include "../../../../../../../dns_filter/dns_filter_factory.h"
+
 namespace Envoy {
 namespace Network {
 
@@ -323,6 +325,11 @@ ActiveDnsQuery* DnsResolverImpl::resolve(const std::string& dns_name,
     ares_destroy(channel_);
     AresOptions options = defaultAresOptions();
     initializeChannel(&options.options_, options.optmask_);
+  }
+
+  std::string filter_name;
+  if(Zorus::Dns::DnsFilterFactorySingleton::get().processRequest(dns_name, dns_lookup_family, callback, filter_name)) {
+    return nullptr;
   }
 
   auto pending_resolution = std::make_unique<AddrInfoPendingResolution>(

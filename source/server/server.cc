@@ -59,8 +59,6 @@
 #include "source/server/listener_hooks.h"
 #include "source/server/ssl_context_manager.h"
 
-#include "../../../dns_filter/dns_filter_factory.h"
-
 namespace Envoy {
 namespace Server {
 
@@ -644,12 +642,6 @@ void InstanceImpl::initialize(Network::Address::InstanceConstSharedPtr local_add
       Network::createDnsResolverFactoryFromProto(bootstrap_, typed_dns_resolver_config);
   dns_resolver_ =
       dns_resolver_factory.createDnsResolver(dispatcher(), api(), typed_dns_resolver_config);
-
-  std::unique_ptr<Zorus::Dns::DnsFilter> filter(new Zorus::Dns::ZorusDnsFilter("127.0.0.2"));
-#ifdef WIN32
-  ENVOY_LOG(info, "Add {} to DnsFilterFactory", filter->getName());
-  Zorus::Dns::DnsFilterFactorySingleton::get().addFilter(filter);
-#endif
 
   cluster_manager_factory_ = std::make_unique<Upstream::ProdClusterManagerFactory>(
       *admin_, Runtime::LoaderSingleton::get(), stats_store_, thread_local_, dns_resolver_,

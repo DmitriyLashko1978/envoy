@@ -12,7 +12,8 @@ class DnsFilter
 {
 public:
   virtual const std::string &getName() = 0;
-  virtual bool processRequest(const std::string& url, Envoy::Network::DnsLookupFamily family, Envoy::Network::DnsResolver::ResolveCb callback) = 0;
+  virtual bool processRequest(const std::string& url, Envoy::Network::DnsLookupFamily family,
+    Envoy::Network::DnsResolver::ResolveCb callback) = 0;
 
   virtual ~DnsFilter() {};
 };

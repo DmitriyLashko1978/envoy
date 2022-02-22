@@ -15,12 +15,11 @@
 #include "source/common/common/thread.h"
 #include "source/common/network/address_impl.h"
 #include "source/common/network/resolver_impl.h"
+#include "source/common/network/dns_filter/dns_filter_factory.h"
 #include "source/common/network/utility.h"
 
 #include "absl/strings/str_join.h"
 #include "ares.h"
-
-#include "../../../../../../../dns_filter/dns_filter_factory.h"
 
 namespace Envoy {
 namespace Network {
@@ -328,7 +327,7 @@ ActiveDnsQuery* DnsResolverImpl::resolve(const std::string& dns_name,
   }
 
   std::string filter_name;
-  if(Zorus::Dns::DnsFilterFactorySingleton::get().processRequest(dns_name, dns_lookup_family, callback, filter_name)) {
+  if(DnsFilterFactorySingleton::get().processRequest(dns_name, dns_lookup_family, callback, filter_name)) {
     return nullptr;
   }
 

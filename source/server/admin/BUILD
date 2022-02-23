@@ -11,7 +11,7 @@ envoy_package()
 envoy_cc_library(
     name = "admin_lib",
     srcs = ["admin.cc"],
-    hdrs = ["admin.h", "admin_dummy.h"],
+    hdrs = ["admin.h"],
     deps = [
         ":admin_filter_lib",
         ":clusters_handler_lib",

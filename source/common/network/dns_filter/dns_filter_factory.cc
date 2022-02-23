@@ -3,8 +3,6 @@
 namespace Envoy {
 namespace Network {
 
-DnsFilterFactory *DnsFilterFactory::dnsfilterfactory_;
-
 void DnsFilterFactory::addFilter(DnsFilter_guard &filter)
 {
   absl::WriterMutexLock lock(&mutex_);

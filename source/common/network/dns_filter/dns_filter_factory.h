@@ -28,7 +28,6 @@ public:
   bool processRequestInternal(const std::string& url, Envoy::Network::DnsLookupFamily family, Envoy::Network::DnsResolver::ResolveCb callback, OUT std::string &filterName);
 
 private:
-  static DnsFilterFactory *dnsfilterfactory_;
   std::list<DnsFilter_guard> filters_;
   absl::Mutex mutex_;
 };
